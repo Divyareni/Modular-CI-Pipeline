@@ -20,6 +20,15 @@ int main(int argc, char* argv[]) {
             std::cout << "[FAIL] Logic Error Detected!" << std::endl;
             return 1; // Failure
         }
+
+        int res = 3*2;
+        if (res == 5) {
+            std::cout << "[PASS] Basic Arithmetic Test Successful for 2nd test." << std::endl;
+            return 0; // Success
+        } else {
+            std::cout << "[FAIL] Logic Error Detected for 2nd test!" << std::endl;
+            return 1; // Failure
+        }
     }
 
     std::cout << "Standard Application Mode: Hello from the Pipeline!" << std::endl;

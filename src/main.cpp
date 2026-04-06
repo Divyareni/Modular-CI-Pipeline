@@ -3,34 +3,39 @@
 #include <vector>
 
 int main(int argc, char* argv[]) {
-    // Convert arguments to a vector for easy searching
     std::vector<std::string> args(argv, argv + argc);
 
-    // Check if the --test flag was passed by CMake/Python
     if (args.size() > 1 && args[1] == "--test") {
         std::cout << "[TEST] Starting Automated Validation..." << std::endl;
         
-        // Simple Logic Test: Is 2+2 still 4? 
-        // In a real scenario, this would be a register check or API call.
-        int result = 2 + 2;
-        if (result == 4) {
-            std::cout << "[PASS] Basic Arithmetic Test Successful." << std::endl;
-            return 0; // Success
+        bool all_passed = true; // Track overall status
+
+        // --- Test 1 ---
+        int result1 = 2 + 2;
+        if (result1 == 4) {
+            std::cout << "[PASS] Test 1: 2 + 2 = 4" << std::endl;
         } else {
-            std::cout << "[FAIL] Logic Error Detected!" << std::endl;
-            return 1; // Failure
+            std::cout << "[FAIL] Test 1: Logic Error!" << std::endl;
+            all_passed = false;
         }
 
-        int res = 3*2;
-        if (res == 5) {
-            std::cout << "[PASS] Basic Arithmetic Test Successful for 2nd test." << std::endl;
-            return 0; // Success
+        // --- Test 2 (The one designed to fail) ---
+        int result2 = 3 * 2;
+        if (result2 == 5) { // This is false (6 != 5)
+            std::cout << "[PASS] Test 2: 3 * 2 = 5" << std::endl;
         } else {
-            std::cout << "[FAIL] Logic Error Detected for 2nd test!" << std::endl;
-            return 1; // Failure
+            std::cout << "[FAIL] Test 2: Expected 5 but got " << result2 << std::endl;
+            all_passed = false;
+        }
+
+        // Final Decision
+        if (all_passed) {
+            return 0; // Pipeline stays Green
+        } else {
+            return 1; // Pipeline turns Red
         }
     }
 
-    std::cout << "Standard Application Mode: Hello from the Pipeline!" << std::endl;
+    std::cout << "Standard Application Mode: Hello!" << std::endl;
     return 0;
 }

@@ -1,0 +1,21 @@
+name: End-to-End Pipeline Validation
+
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/prepare-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install CMake
+        run: sudo apt-get install -y cmake
+
+      - name: Run Automation Script
+        run: python3 scripts/run_tests.py

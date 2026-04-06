@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 
         // --- Test 2 (The one designed to fail) ---
         int result2 = 3 * 2;
-        if (result2 == 5) { // This is false (6 != 5)
+        if (result2 == 6) { // This is false (6 != 5)
             std::cout << "[PASS] Test 2: 3 * 2 = 5" << std::endl;
         } else {
             std::cout << "[FAIL] Test 2: Expected 5 but got " << result2 << std::endl;
